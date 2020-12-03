@@ -6,7 +6,7 @@
 //  Copyright © 2016 Ekhoo. All rights reserved.
 //
 
-#if canImport(Cocoa)
+#if os(OSX)
 import Cocoa
 
 public class Device {
@@ -37,7 +37,7 @@ public class Device {
         }
         return Type.unknown
     }
-    
+
     private static func sizeInInches() -> CGFloat {
         let screen = NSScreen.main
         let description = screen?.deviceDescription
@@ -49,7 +49,7 @@ public class Device {
         let sizeInInches = Device.sizeInInches()
 
         switch sizeInInches {
-        case 11: 
+        case 11:
             return Size.screen11Inch
         case 12:
             return Size.screen12Inch
@@ -57,6 +57,8 @@ public class Device {
             return Size.screen13Inch
         case 15:
             return Size.screen15Inch
+        case 16:
+            return Size.screen16Inch
         case 17:
             return Size.screen17Inch
         case 20:
@@ -71,7 +73,7 @@ public class Device {
             return Size.unknownSize
         }
     }
-    
+
     static public func version() -> String {
         return String(describing: Device.type()) + " " + String(describing: Device.sizeInInches()) + "-inch"
     }
